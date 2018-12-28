@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"github.com/astaxie/beego"
+	"io/ioutil"
 )
 
 type MainController struct {
@@ -10,8 +11,16 @@ type MainController struct {
 }
 
 func (c *MainController) Post() {
-
-	data := c.Ctx.Request.Body.Read;
-	fmt.Print(data)
+	file, err := c.Ctx.Request.MultipartForm.File["file"][0].Open()
+	if err == nil {
+		contentFromFile, err := ioutil.ReadAll(file)
+		if err == nil {
+			fmt.Println(string(contentFromFile))
+		} else {
+			c.Ctx.Output.SetStatus(400)
+		}
+	} else {
+		c.Ctx.Output.SetStatus(400)
+	}
 	c.ServeJSON()
 }

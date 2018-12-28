@@ -1,10 +1,9 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/httplib"
-	"io/ioutil"
-	"log"
 )
 
 type MainController struct {
@@ -18,10 +17,13 @@ func (c *MainController) Get() {
 
 func sendFile() {
 	req := httplib.Post("http://localhost:8080/file")
-	bt, err := ioutil.ReadFile("main/hello.txt")
-	if err != nil {
-		log.Fatal("read file err:", err)
+	req.PostFile("file", "main/hello.txt")
+	res, err := req.Response()
+	if err == nil {
+		if res.StatusCode == 200 {
+			fmt.Println("file sent")
+		}
+	} else {
+		fmt.Println("error")
 	}
-	req.Body(bt)
-	req.DoRequest()
 }
