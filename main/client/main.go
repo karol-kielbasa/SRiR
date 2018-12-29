@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
+	beego.LoadAppConfig("conf","main/client/conf")
+	beego.BConfig.WebConfig.ViewsPath = "main/client/views"
 	beego.Run()
-
-
 }
 

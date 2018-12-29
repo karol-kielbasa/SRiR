@@ -6,5 +6,8 @@ import (
 )
 
 func init() {
-    beego.Router("/file", &controllers.MainController{})
+	beego.Router("/sendFile", &controllers.SendFileController{})
+	beego.Router("/buildFile", &controllers.BuildFileController{})
+	beego.Router("/index", &controllers.IndexController{})
+	beego.Router("/executeFile", &controllers.ExecuteFileController{})
 }
