@@ -21,7 +21,7 @@ func (c *BuildFileController) Get() {
 
 	if err == nil {
 		bodyBytes, _ := ioutil.ReadAll(res.Body)
-		var response * models.Response
+		var response *models.Response
 		err = json.Unmarshal(bodyBytes, &response)
 		c.Data["json"] = response
 	} else {

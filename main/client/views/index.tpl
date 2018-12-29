@@ -40,16 +40,6 @@
     </body>
 </html>
 <script>
-  function checkIfFileSelected(){
-    let val = $( "#input" ).val();
-    if(val !== ""){
-        $( "#build" ).show()
-        $( "#execute" ).show()
-    } else {
-        $( "#build" ).hide()
-        $( "#execute" ).hide()
-    }
-  }
   function getFileName(){
       let val = $('#input').val().replace(/C:\\fakepath\\/i, '')
       if(val !== ""){

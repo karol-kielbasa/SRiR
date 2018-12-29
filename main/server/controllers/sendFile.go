@@ -26,17 +26,17 @@ func (c *SendFileController) Post() {
 				fmt.Print(string(contentFromFile))
 				_, err = f.Write(contentFromFile)
 				defer f.Close()
-				c.Data["json"] = models.NewResponse("File saved","200")
+				c.Data["json"] = models.NewResponse("File saved", "200")
 			} else {
 				c.Data["json"] = models.NewResponse("Something went wrong", "400")
 				c.Ctx.Output.SetStatus(400)
 			}
 		} else {
-			c.Data["json"] = models.NewResponse("Something went wrong","400")
+			c.Data["json"] = models.NewResponse("Something went wrong", "400")
 			c.Ctx.Output.SetStatus(400)
 		}
 	} else {
-		c.Data["json"] = models.NewResponse("Something went wrong","400")
+		c.Data["json"] = models.NewResponse("Something went wrong", "400")
 		c.Ctx.Output.SetStatus(400)
 	}
 	c.ServeJSON()

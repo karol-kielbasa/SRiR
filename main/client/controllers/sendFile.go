@@ -24,22 +24,22 @@ func (c *SendFileController) Post() {
 			if err == nil {
 				f.Write(contentFromFile)
 				defer f.Close()
-				c.Data["json"] = models.NewResponse("File saved","200")
+				c.Data["json"] = models.NewResponse("File saved", "200")
 			}
 		} else {
-			c.Data["json"] = models.NewResponse("Something went wrong","400")
+			c.Data["json"] = models.NewResponse("Something went wrong", "400")
 			c.Ctx.Output.SetStatus(400)
 		}
 	} else {
-		c.Data["json"] = models.NewResponse("Something went wrong","400")
+		c.Data["json"] = models.NewResponse("Something went wrong", "400")
 		c.Ctx.Output.SetStatus(400)
 	}
 	req := httplib.Post("http://localhost:8080/sendFile")
-	req.PostFile("file", "main/client/fileToSend/" + fileName)
+	req.PostFile("file", "main/client/fileToSend/"+fileName)
 	res, err := req.Response()
 	if err == nil {
 		bodyBytes, _ := ioutil.ReadAll(res.Body)
-		var response * models.Response
+		var response *models.Response
 		err = json.Unmarshal(bodyBytes, &response)
 		c.Data["json"] = response
 	} else {
@@ -47,5 +47,3 @@ func (c *SendFileController) Post() {
 	}
 	c.ServeJSON()
 }
-
-

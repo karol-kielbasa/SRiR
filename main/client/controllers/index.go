@@ -6,7 +6,6 @@ type IndexController struct {
 	beego.Controller
 }
 
-
 func (c *IndexController) Get() {
 	c.TplName = "index.tpl"
 }

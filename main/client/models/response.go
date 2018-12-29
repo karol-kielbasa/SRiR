@@ -2,7 +2,7 @@ package models
 
 type Response struct {
 	Message string
-	Status string
+	Status  string
 }
 
 func NewResponse(message string, status string) map[string]string {
