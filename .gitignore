@@ -16,5 +16,7 @@ vendor/
 .idea
 .DS_Store
 main/client/fileToSend/*
+!main/client/fileToSend/.gitkeep
 main/server/filesFromClients/*
+!main/server/filesFromClients/.gitkeep
 *.exe
