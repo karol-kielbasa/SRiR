@@ -1,0 +1,6 @@
+{
+  "client_ip":"localhost",
+  "client_port": ":8081",
+  "server_ip": "localhost",
+  "server_port": ":8082"
+}

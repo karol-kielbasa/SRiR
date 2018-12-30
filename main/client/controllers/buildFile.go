@@ -15,7 +15,7 @@ type BuildFileController struct {
 
 func (c *BuildFileController) Get() {
 	fileName := c.GetString("fileName")
-	req := httplib.Get("http://localhost:8080/buildFile")
+	req := httplib.Get("http://"+ getServerPortAndIp()+ "/buildFile")
 	req.Param("fileName", fileName)
 	res, err := req.Response()
 
@@ -25,6 +25,7 @@ func (c *BuildFileController) Get() {
 		err = json.Unmarshal(bodyBytes, &response)
 		c.Data["json"] = response
 	} else {
+		c.Data["json"] = models.NewResponse("Something went wrong", "400")
 		fmt.Println("error")
 	}
 	c.ServeJSON()

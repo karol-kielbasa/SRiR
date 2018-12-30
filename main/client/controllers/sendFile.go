@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/config"
 	"github.com/astaxie/beego/httplib"
 	"io/ioutil"
 	"os"
@@ -34,7 +35,7 @@ func (c *SendFileController) Post() {
 		c.Data["json"] = models.NewResponse("Something went wrong", "400")
 		c.Ctx.Output.SetStatus(400)
 	}
-	req := httplib.Post("http://localhost:8080/sendFile")
+	req := httplib.Post("http://"+ getServerPortAndIp()+ "/sendFile")
 	req.PostFile("file", "main/client/fileToSend/"+fileName)
 	res, err := req.Response()
 	if err == nil {
@@ -43,7 +44,19 @@ func (c *SendFileController) Post() {
 		err = json.Unmarshal(bodyBytes, &response)
 		c.Data["json"] = response
 	} else {
+		c.Data["json"] = models.NewResponse("Something went wrong", "400")
 		fmt.Println("error")
 	}
 	c.ServeJSON()
+}
+
+func getServerPortAndIp() string {
+	conf, err := config.NewConfig("json", "main/client/conf/app.json")
+	if err != nil {
+		panic(err)
+	}
+	port := conf.String("server_port")
+	ip := conf.String("server_ip")
+
+	return ip + port
 }

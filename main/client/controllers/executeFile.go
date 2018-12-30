@@ -15,7 +15,7 @@ type ExecuteFileController struct {
 
 func (c *ExecuteFileController) Get() {
 	fileName := c.GetString("fileName")
-	req := httplib.Get("http://localhost:8080/executeFile")
+	req := httplib.Get("http://"+ getServerPortAndIp()+ "/executeFile")
 	req.Param("fileName", fileName)
 	res, err := req.Response()
 
@@ -25,6 +25,7 @@ func (c *ExecuteFileController) Get() {
 		err = json.Unmarshal(bodyBytes, &response)
 		c.Data["json"] = response
 	} else {
+		c.Data["json"] = models.NewResponse("Something went wrong", "400")
 		fmt.Println("error")
 	}
 	c.ServeJSON()
