@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"SRiR/main/server/models"
-	"fmt"
 	"github.com/astaxie/beego"
 	"io/ioutil"
 	"os"
@@ -23,7 +22,6 @@ func (c *SendFileController) Post() {
 		if err == nil {
 			f, err := os.Create("main/server/filesFromClients/" + fileName)
 			if err == nil {
-				fmt.Print(string(contentFromFile))
 				_, err = f.Write(contentFromFile)
 				defer f.Close()
 				c.Data["json"] = models.NewResponse("File saved", "200")

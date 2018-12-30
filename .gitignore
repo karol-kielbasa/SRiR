@@ -19,4 +19,6 @@ main/client/fileToSend/*
 !main/client/fileToSend/.gitkeep
 main/server/filesFromClients/*
 !main/server/filesFromClients/.gitkeep
+main/server/filesForReports/*
+!main/server/filesForReports/.gitkeep
 *.exe

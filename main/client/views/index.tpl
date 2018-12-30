@@ -15,7 +15,7 @@
                     <h2>Select file</h2>
                     <form action="/sendFile" method="post" enctype="multipart/form-data">
                         <input id="input" type="file" name="file" multiple="multiple">
-                        <input type="submit" name="submit" value="Send file" onclick="checkIfFileSelected()">
+                        <input type="submit" name="submit" value="Send file">
                     </form>
                     <div id="build">
                         <h2>Build selected file</h2>
