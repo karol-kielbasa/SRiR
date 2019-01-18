@@ -31,6 +31,13 @@
                             <input type="submit" onclick="getFileName()">
                         </form>
                     </div>
+                    <div id="backup">
+                        <h2> Backup file and get comparison reports </h2>
+                        <form action="/backupFile" method="get">
+                            <input id="query-param-backup" type="hidden" name="fileName"/>
+                            <input type="submit" onclick="getFileName()">
+                        </form>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -45,6 +52,7 @@
       if(val !== ""){
          $( "#query-param-execute" ).val(val)
          $( "#query-param-build" ).val(val)
+         $( "#query-param-backup" ).val(val)
       }
     }
 </script>
