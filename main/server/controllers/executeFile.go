@@ -6,6 +6,7 @@ import (
 	"github.com/astaxie/beego"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 type ExecuteFileController struct {
@@ -21,7 +22,8 @@ func (c *ExecuteFileController) Get() {
 		if err == nil {
 			contentFromFile, err := ioutil.ReadAll(file)
 			if err == nil {
-				f, err := os.Create("main/server/filesForReports/" + fileName + ".txt")
+				fileName2 := strings.Replace(fileName, ".", "-", -1)
+				f, err := os.Create("main/server/filesForReports/" + fileName2 + ".txt")
 				if err == nil {
 					_, err = f.Write(contentFromFile)
 					defer f.Close()

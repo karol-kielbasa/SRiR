@@ -10,4 +10,5 @@ func init() {
 	beego.Router("/buildFile", &controllers.BuildFileController{})
 	beego.Router("/index", &controllers.IndexController{})
 	beego.Router("/executeFile", &controllers.ExecuteFileController{})
+	beego.Router("/backupFile", &controllers.BackupController{})
 }
